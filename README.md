@@ -4,8 +4,6 @@ TestWare
 
 TestWare is a minimally invasive fork of the Autoware Architecture Proposal, a prototype system targeted at SAE Level 4 autonomous driving capabilities. 
 
-TestPilot eliminates the need for ARM and Qualcomm hardware enabling reliable, synchronous, and deterministic execution of the full OpenPilot stack on your desktop computer. TestPilot includes a simple OpenAI gym like interface to CARLA and is executed within a Docker container such that multiple TestPilot agents can run simultaneously on the same computer.
-
 ### HD map format conversion
 
 ### Sensors and sensor placement 
