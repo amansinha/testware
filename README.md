@@ -13,7 +13,7 @@ TestWare is a minimally invasive fork of the Autoware Architecture Proposal, a p
 ### Synchronous execution
 
 ### Other notes
-Docker version, NVIDIA drivers, Carla versions
+Docker version, NVIDIA drivers, Carla versions, egg file, other maps
 
 ## Citing
 
