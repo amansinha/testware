@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Map path -->
+  <arg name="map_path" default="/AutowareArchitectureProposal/maps"/>
+
+  <!-- Number of cameras to use -->
+  <arg name="image_number" default="1"/>
+  
+  <param name="/use_sim_time" value="true" />
+
+  <!-- Vehicle Setting -->
+  <include file="$(find vehicle_launch)/launch/vehicle_description/vehicle_description.launch" />
+
+  <!-- Dummy /vehicle/engage for autoware_state_monitor -->
+  <node pkg="rostopic" type="rostopic" name="simulation_vehicle_engage_publisher" args="pub /vehicle/engage std_msgs/Bool 'data: true'" output="screen"/>
+
+  <!-- System -->
+  <include file="$(find system_launch)/launch/system.launch" />
+
+  <!-- Map -->
+  <include file="$(find map_launch)/launch/carla_map.launch">
+    <arg name="map_path" value="$(arg map_path)"/>
+  </include>
+
+  <!-- Planning Simulator -->
+  <!--include file="$(find simple_planning_simulator)/launch/simple_planning_simulator.launch" /-->
+  <!-- the only piece we need to keep from simple planning sim -->
+  <node pkg="topic_tools" type="relay" name="relay" args="/vehicle/status/twist /localization/twist" />
+
+  <!-- Dummy Perception -->
+  <!--include file="$(find dummy_perception_publisher)/launch/dummy_perception_publisher.launch" /-->
+
+  <!-- Planning -->
+  <include file="$(find planning_launch)/launch/planning.launch" />
+
+  <!-- Control -->
+  <include file="$(find control_launch)/launch/control.launch">
+    <arg name="lateral_controller_mode" value="mpc_follower" doc="options: mpc_follower, pure_pursuit"/>
+  </include>
+
+  <!-- Rviz -->
+  <node pkg="rviz" type="rviz" name="rviz" output="screen" args="-d $(find autoware_launch)/rviz/autoware.rviz" />
+
+  <!-- Web Controller -->
+  <include file="$(find roswww)/launch/roswww.launch">
+    <arg name="cached" value="false"/>
+  </include>
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+
+  <!-- Sensing -->
+  <group ns="sensing">
+    <!-- LiDAR Driver -->
+    <include file="$(find sensing_launch)/launch/lidar.launch">
+      <arg name="launch_driver" value="false" />
+    </include>
+
+    <!-- IMU Driver -->
+    <include file="$(find sensing_launch)/launch/imu.launch">
+      <arg name="launch_driver" value="false" />
+    </include>
+
+    <!-- Camera Driver -->
+    <!-- <include file="$(find sensing_launch)/launch/camera.launch">
+      <arg name="launch_driver" value="$(arg launch_driver)" />
+    </include> -->
+
+    <!-- GNSS Driver -->
+    <!--include file="$(find sensing_launch)/launch/gnss.launch">
+      <arg name="launch_driver" value="$(arg launch_driver)" />
+    </include-->
+
+  </group>
+
+  <!-- Perception -->
+  <include file="$(find perception_launch)/launch/perception.launch">
+    <arg name="mode" value="camera_lidar_fusion"/>
+    <!-- "camera_lidar_fusion", "lidar" or "camera" -->
+    <arg name="image_raw0" value="/image_raw1"/>
+    <arg name="camera_info0" value="/camera_info1"/>
+    <arg name="image_raw1" value="/image_raw2"/>
+    <arg name="camera_info1" value="/camera_info2"/>
+    <arg name="image_raw2" value="/image_raw3"/>
+    <arg name="camera_info2" value="/camera_info3"/>
+    <arg name="image_raw3" value="/image_raw4"/>
+    <arg name="camera_info3" value="/camera_info4"/>
+    <arg name="image_raw4" value="/image_raw5"/>
+    <arg name="camera_info4" value="/camera_info5"/>
+    <arg name="image_raw5" value="/image_raw6"/>
+    <arg name="camera_info5" value="/camera_info6"/>
+    <arg name="image_raw6" default=""/>
+    <arg name="camera_info6" default=""/>
+    <arg name="image_raw7" default=""/>
+    <arg name="camera_info7" default=""/>
+    <arg name="image_number" value="$(arg image_number)"/>
+
+
+  </include>
+
+    <!-- Localization -->
+  <!--include file="$(find localization_launch)/launch/localization.launch">
+  </include-->
+
+
+
+
+</launch>
