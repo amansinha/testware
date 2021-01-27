@@ -4,11 +4,13 @@ TestWare
 
 TestWare is a minimally invasive fork of the Autoware Architecture Proposal, a prototype system targeted at SAE Level 4 autonomous driving capabilities. 
 
-### HD map format conversion
+### Utilities for CARLA
+**Sensors:** We include utilities which read the sensor configuation and instantiate the specified sensors and transforms on the CARLA ego vehicle. See ``CarlaUtils.py`` for details. In addition we provide methods for converting the measurements of these sensors to ROS messages and publishing the serialized data to Autoware in a synchronous manner (along with a clock which accurately reflects the state of CARLA's physics engine). 
 
-### Sensors and sensor placement 
+**Control:** 
 
 ### Resetting the environment
+
 
 ### Synchronous execution
 
