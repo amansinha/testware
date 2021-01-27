@@ -11,6 +11,9 @@ TestWare is a minimally invasive fork of the Autoware Architecture Proposal (AWA
 **Control:** 
 We use the vehicle model to predict the yaw rate and slip angle of the ego vehicle such that Autoware control inputs can be applied as velocity and angular velocity commands. See ``/testware/vehicle_model.py`` for an implementation of the dynamic bicycle model from "The Science of Vehicle Dynamics (2014), M. Guiggiani". Additionally, ``/testware/testware.py`` and ``/testware/utils/CarlaUtils.py`` contain methods for stepping the simulator and computing the control inputs. 
 
+### Modifications to the Autoware Architecture Proposal Source
+We have made minimal changes to the AWAP source code, all changes are contained in ``/testware/rosutils``. Note that the files contained in this folder are copied into the ``/testware/AutowareArchitectureProposal`` directory structure when the Docker image is built. 
+
 ### Resetting the environment
 
 
