@@ -3,7 +3,7 @@ TestWare
 ======
 > **WARNING**: This repository is provided solely for simulation research purposes. It should not be used to drive cars. 
 
-TestWare is a minimally invasive fork of the [Autoware Architecture Proposal](https://github.com/tier4/AutowareArchitectureProposal.proj) (AWAP), a prototype system targeted at SAE Level 4 autonomous driving capabilities. We provide and OpenAI Gym like interface for interacting with the AWAP implementation using the CARLA simulator. 
+TestWare is a minimally invasive fork of the [Autoware Architecture Proposal](https://github.com/tier4/AutowareArchitectureProposal.proj) (AWAP, 6804847385ec3b683e124ade50d8e03174c08f55), a prototype system targeted at SAE Level 4 autonomous driving capabilities. We provide and OpenAI Gym like interface for interacting with the AWAP implementation using the CARLA simulator. 
 
 ### Utilities for CARLA Integration
 
@@ -21,43 +21,17 @@ We use the vehicle model to predict the yaw rate and slip angle of the ego vehic
 ### Modifications to the Autoware Architecture Proposal Source
 We have made minimal changes to the AWAP source code, all changes are contained in ``/testware/rosutils``. Note that the files contained in this folder are copied into the ``/testware/AutowareArchitectureProposal`` directory structure when the Docker image is built. 
 
-## Citing
-
-If you find this code useful in your work, please consider citing our [paper](https://arxiv.org/abs/1912.03618):
-
-```
-@article{norden2019efficient,
-  title={Efficient black-box assessment of autonomous vehicle safety},
-  author={Norden, Justin and O'Kelly, Matthew and Sinha, Aman},
-  journal={arXiv preprint arXiv:1912.03618},
-  year={2019}
-}
-```
-
 # Dependencies
 We have tested the code on Ubuntu 16.04, 18.04, and 20.04 machines. Some features of the Autoware Architecture Proposal (and thus TestWare) require CUDA; therefore, we are skeptical that it will be possible to use OSX or Windows machines, even with Docker. We do not provide any support for non-Ubuntu operating systems.
 
-## Python 3.7
-Depending on your Linux distro this should already be preinstalled. This dependency is due to the requirements of CARLA 0.9.10.1 rather than any aspect of TestPilot.
-
 ## Docker
-Install [Docker for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/). Make sure to `sudo usermod -aG docker your-user` and then you do not need to run below docker scripts as `sudo`
-
-## Python Libraries
-Dependencies are detailed in requirements.txt
-* `colorama 0.4.3`
-* `cython 0.29.21`
-* `numba 0.51.2`
-* `numpy 1.19.2`
-* `opencv-python 4.4.0.42`
-* `pygame 1.9.6`
-* `pyzmq 19.0.2`
-
-Newer versions of these libraries likely work but have not been tested.
+Install [Docker for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/). Make sure to `sudo usermod -aG docker your-user` and then you do not need to run below docker scripts as `sudo`. You will need to make sure that you have Docker version 19 or greater. 
 
 ## CARLA
 Get CARLA from https://github.com/carla-simulator/carla/releases. We have validated TestWare with CARLA releases 0.9.10.1. Note that for 0.9.9.x and above, visuals and weather look best using Vulkan instead of OpenGL when running CARLA. 
 
+## NVIDIA and CUDA
+You need an NVIDIA graphics card with driver version 440 or greater. You will need a card with at least 4 GB of memory to support running CARLA and Autoware perception components simultaneously. 
 
 # Setup
 0. Run `./build_docker.sh`
