@@ -47,7 +47,7 @@ You need an NVIDIA graphics card with driver version 440 or greater. You will ne
 Licensing
 ------
 
-TestWare is released under the Apache V2 license. Some parts of the software are released under other licenses as specified.
+TestWare is released under the Apache License 2.0. Some parts of the software are released under other licenses as specified.
 
 Any user of this software shall indemnify and hold harmless Trustworthy AI, Inc. and its directors, officers, employees, agents, stockholders, affiliates, subcontractors and customers from and against all allegations, claims, actions, suits, demands, damages, liabilities, obligations, losses, settlements, judgments, costs and expenses (including without limitation attorneys’ fees and costs) which arise out of, relate to or result from any use of this software by user.
 
