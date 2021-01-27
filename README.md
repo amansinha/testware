@@ -2,12 +2,14 @@ TestWare
 ======
 > **WARNING**: This repository is provided solely for simulation research purposes. It should not be used to drive cars. 
 
-TestWare is a minimally invasive fork of the Autoware Architecture Proposal, a prototype system targeted at SAE Level 4 autonomous driving capabilities. 
+TestWare is a minimally invasive fork of the Autoware Architecture Proposal (AWAP), a prototype system targeted at SAE Level 4 autonomous driving capabilities. We provide and OpenAI Gym like interface for interacting with the AWAP implementation using the CARLA simulator. 
 
 ### Utilities for CARLA
-**Sensors:** We include utilities which read the sensor configuation and instantiate the specified sensors and transforms on the CARLA ego vehicle. See ``CarlaUtils.py`` for details. In addition we provide methods for converting the measurements of these sensors to ROS messages and publishing the serialized data to Autoware in a synchronous manner (along with a clock which accurately reflects the state of CARLA's physics engine). 
+
+**Sensors:** We include utilities which read the sensor configuation and instantiate the specified sensors and transforms on the CARLA ego vehicle. In addition we provide methods for converting the measurements of these sensors to ROS messages and publishing the serialized data to Autoware in a synchronous manner (along with a clock which accurately reflects the state of CARLA's physics engine). See ``/testware/utils/CarlaUtils.py`` for the implementation of sensor instantiation features and ``/testware/utils/AutowareUtils.py`` for measurement publishing. 
 
 **Control:** 
+We use the vehicle model to predict the yaw rate and slip angle of the ego vehicle such that Autoware control inputs can be applied as velocity and angular velocity commands. See ``/testware/vehicle_model.py`` for an implementation of the dynamic bicycle model from "The Science of Vehicle Dynamics (2014), M. Guiggiani". Additionally, ``/testware/testware.py`` and ``/testware/utils/CarlaUtils.py`` contain methods for stepping the simulator and computing the control inputs. 
 
 ### Resetting the environment
 
@@ -34,7 +36,7 @@ If you find this code useful in your work, please consider citing our [paper](ht
 We have tested the code on Ubuntu 16.04, 18.04, and 20.04 machines. Some features of the Autoware Architecture Proposal (and thus TestWare) require CUDA; therefore, we are skeptical that it will be possible to use OSX or Windows machines, even with Docker. We do not provide any support for non-Ubuntu operating systems.
 
 ## Python 3.7
-Depending on your Linux distro this should already be preinstalled. This dependency is due to the requirements of CARLA 0.9.9 rather than any aspect of TestPilot.
+Depending on your Linux distro this should already be preinstalled. This dependency is due to the requirements of CARLA 0.9.10.1 rather than any aspect of TestPilot.
 
 ## Docker
 Install [Docker for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/). Make sure to `sudo usermod -aG docker your-user` and then you do not need to run below docker scripts as `sudo`
@@ -69,7 +71,7 @@ Get CARLA from https://github.com/carla-simulator/carla/releases. We have valida
 Licensing
 ------
 
-TestWare is released under the MIT license. Some parts of the software are released under other licenses as specified.
+TestWare is released under the Apache V2 license. Some parts of the software are released under other licenses as specified.
 
 Any user of this software shall indemnify and hold harmless Trustworthy AI, Inc. and its directors, officers, employees, agents, stockholders, affiliates, subcontractors and customers from and against all allegations, claims, actions, suits, demands, damages, liabilities, obligations, losses, settlements, judgments, costs and expenses (including without limitation attorneys’ fees and costs) which arise out of, relate to or result from any use of this software by user.
 
