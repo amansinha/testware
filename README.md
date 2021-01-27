@@ -3,7 +3,7 @@ TestWare
 ======
 > **WARNING**: This repository is provided solely for simulation research purposes. It should not be used to drive cars. 
 
-TestWare is a minimally invasive fork of the [Autoware Architecture Proposal](https://github.com/tier4/AutowareArchitectureProposal.proj) (AWAP), from commit 6804847385ec3b683e124ade50d8e03174c08f55. AWAP is a prototype system targeted at SAE Level 4 autonomous driving capabilities. We provide and OpenAI Gym like interface for interacting with the AWAP implementation using the CARLA simulator. 
+TestWare is a minimally invasive fork of the [Autoware Architecture Proposal](https://github.com/tier4/AutowareArchitectureProposal.proj) (AWAP), from [commit](https://github.com/tier4/AutowareArchitectureProposal.proj/tree/6804847385ec3b683e124ade50d8e03174c08f55). AWAP is a prototype system targeted at SAE Level 4 autonomous driving capabilities. We provide and OpenAI Gym like interface for interacting with the AWAP implementation using the CARLA simulator. 
 
 ### Utilities for CARLA Integration
 
