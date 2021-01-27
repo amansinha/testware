@@ -20,9 +20,6 @@ We use the vehicle model to predict the yaw rate and slip angle of the ego vehic
 ### Modifications to the Autoware Architecture Proposal Source
 We have made minimal changes to the AWAP source code, all changes are contained in ``/testware/rosutils``. Note that the files contained in this folder are copied into the ``/testware/AutowareArchitectureProposal`` directory structure when the Docker image is built. 
 
-### Other notes
-Docker version, NVIDIA drivers, Carla versions, egg file, other maps
-
 ## Citing
 
 If you find this code useful in your work, please consider citing our [paper](https://arxiv.org/abs/1912.03618):
@@ -57,7 +54,7 @@ Dependencies are detailed in requirements.txt
 
 Newer versions of these libraries likely work but have not been tested.
 
-## CARLA (to run the demo)
+## CARLA
 Get CARLA from https://github.com/carla-simulator/carla/releases. We have validated TestWare with CARLA releases 0.9.10.1. Note that for 0.9.9.x and above, visuals and weather look best using Vulkan instead of OpenGL when running CARLA. 
 
 
