@@ -4,20 +4,21 @@ TestWare
 
 TestWare is a minimally invasive fork of the [Autoware Architecture Proposal](https://github.com/tier4/AutowareArchitectureProposal.proj) (AWAP), a prototype system targeted at SAE Level 4 autonomous driving capabilities. We provide and OpenAI Gym like interface for interacting with the AWAP implementation using the CARLA simulator. 
 
-### Utilities for CARLA
+### Utilities for CARLA Integration
 
 **Sensors:** We include utilities which read the sensor configuation and instantiate the specified sensors and transforms on the CARLA ego vehicle. In addition we provide methods for converting the measurements of these sensors to ROS messages and publishing the serialized data to Autoware in a synchronous manner (along with a clock which accurately reflects the state of CARLA's physics engine). See ``/testware/utils/CarlaUtils.py`` for the implementation of sensor instantiation features and ``/testware/utils/AutowareUtils.py`` for measurement publishing. 
 
 **Control:** 
 We use the vehicle model to predict the yaw rate and slip angle of the ego vehicle such that Autoware control inputs can be applied as velocity and angular velocity commands. See ``/testware/vehicle_model.py`` for an implementation of the dynamic bicycle model from "The Science of Vehicle Dynamics (2014), M. Guiggiani". Additionally, ``/testware/testware.py`` and ``/testware/utils/CarlaUtils.py`` contain methods for stepping the simulator and computing the control inputs. 
 
+**Resets:** We enable resetting the AWAP stack and initilizing the pose and goal pose after the conclusion of each rollout. See ``/trustware/trustware.py`` for details and ``/demo/demo.py`` for an example. In addition we provide ``/rosutils/simple_planning_simulator_core.cpp`` to handle the rest on the AWAP side.
+
+**Synchronous Execution:** We provide a clock signal to ROS which matches the passage of time in CARLA, and ensure lockstep execution of sensor observations, then planning and control functions. See ``/demo/demo.py`` for an example. 
+
+**Launch Files and Maps:** We include a sample map and scenario as well as launch files to start AWAP ros nodes. See ``/rosutils/carla_simultor.launch`` for details and related files. 
+
 ### Modifications to the Autoware Architecture Proposal Source
 We have made minimal changes to the AWAP source code, all changes are contained in ``/testware/rosutils``. Note that the files contained in this folder are copied into the ``/testware/AutowareArchitectureProposal`` directory structure when the Docker image is built. 
-
-### Resetting the environment
-
-
-### Synchronous execution
 
 ### Other notes
 Docker version, NVIDIA drivers, Carla versions, egg file, other maps
