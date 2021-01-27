@@ -42,7 +42,7 @@ You need an NVIDIA graphics card with driver version 440 or greater. You will ne
 	An example of this command would be `DISPLAY= ./CarlaUE4.sh -opengl -quality-level=Epic -carla-world-port=2010` from a directory that contains the binary `CarlaUE4.sh`
 1. Run `./run_docker.sh`
 2. Run `source /AutowareArchitectureProposal/devel/setup.bash` inside the docker
-3. Run `python demo.py`
+3. Run `python demo.py` inside the docker
 
 Licensing
 ------
