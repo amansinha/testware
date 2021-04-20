@@ -57,12 +57,12 @@ RUN /bin/bash -c "source /AutowareArchitectureProposal/devel/setup.bash; cmake .
 WORKDIR /AutowareArchitectureProposal
 RUN mkdir maps
 WORKDIR maps
-COPY rosutils/gdown.pl .
-RUN ./gdown.pl 'https://drive.google.com/open?id=1ovrJcFS5CZ2H51D8xVWNtEvj_oiXW-zk' rosbag_sample_map.zip
+RUN pip install gdown
+RUN gdown --id 1ovrJcFS5CZ2H51D8xVWNtEvj_oiXW-zk -O rosbag_sample_map.zip
 RUN unzip rosbag_sample_map.zip && \
     rm rosbag_sample_map.zip
-RUN ./gdown.pl 'https://drive.google.com/open?id=1bgdo8cs8gMO05qpB3O646MhXjvpdtVLP' Town04.osm
-RUN ./gdown.pl 'https://drive.google.com/open?id=1bSk2j8NiE3D-5cJPdpW_gItqexc6ryeN/' Town04.pcd
+RUN gdown --id 1bgdo8cs8gMO05qpB3O646MhXjvpdtVLP -O Town04.osm
+RUN gdown --id 1bSk2j8NiE3D-5cJPdpW_gItqexc6ryeN -O Town04.pcd
 
 
 RUN pip install scipy pygame pygobject llvmlite==0.31.0 numba==0.47.0 zmq
